@@ -25,6 +25,7 @@ const Button = ({
   hoverColor,
   icon,
   gradient,
+  clickHandler,
 }: Props) => {
   const [isHovered, setIsHovered] = useState(false);
   const currentBgColor = isHovered ? hoverBgColor : bgColor;
@@ -42,6 +43,7 @@ const Button = ({
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={clickHandler}
     >
       {icon}
       <div className="text-xs">{label}</div>

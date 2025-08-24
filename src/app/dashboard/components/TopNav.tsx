@@ -1,14 +1,19 @@
 "use client";
 
-import Button from "../Button";
+import Button from "../../ui/Button";
 import Logo from "@/assets/logo.svg";
 import Play from "@/assets/play.svg";
 import Logout from "@/assets/logout.svg";
 
-import { userName } from "./mockData";
+import { userName } from "../mockData";
+import { useRouter } from "next/navigation";
 
 const TopNav = () => {
-  const clickInterviewHandler = () => {};
+  const router = useRouter();
+
+  const clickInterviewHandler = () => {
+    router.push("/interview");
+  };
   const clickLogoutHandler = () => {};
   return (
     <div className="flex justify-center items-center w-full h-15 shadow-xl">

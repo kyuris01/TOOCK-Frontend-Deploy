@@ -1,4 +1,4 @@
-import TopNav from "../ui/dashboard/TopNav";
+import TopNav from "./components/TopNav";
 import StatSection from "./components/StatSection";
 
 const Page = () => {

@@ -1,7 +1,7 @@
 import React from "react";
 import { STATS_CONFIG } from "../data/statsCards.config";
 import StatsCard from "./StatsCard";
-import { userStatistics } from "@/app/ui/dashboard/mockData";
+import { userStatistics } from "@/app/dashboard/mockData";
 
 const StatSection = () => {
   const dataArr = Object.values(userStatistics);
