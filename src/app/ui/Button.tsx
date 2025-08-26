@@ -4,8 +4,8 @@ import { useState } from "react";
 
 interface Props {
   label?: string;
-  width?: number;
-  height?: number;
+  width?: string;
+  height?: string;
   bgColor?: string;
   color?: string;
   hoverBgColor?: string;
@@ -17,8 +17,8 @@ interface Props {
 
 const Button = ({
   label,
-  width = 6.5,
-  height = 2.5,
+  width,
+  height,
   bgColor,
   color,
   hoverBgColor,
@@ -35,8 +35,8 @@ const Button = ({
     <div
       className="flex flex-row justify-center items-center px-4 py-2 font-bold rounded-md gap-2 group cursor-pointer select-none"
       style={{
-        width: `${width}rem`,
-        height: `${height}rem`,
+        width: `${width}`,
+        height: `${height}`,
         backgroundColor: currentBgColor,
         color: currentColor,
         backgroundImage: gradient,
