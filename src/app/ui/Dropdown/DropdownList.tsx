@@ -3,15 +3,14 @@
 import React from "react";
 import clsx from "clsx";
 
-const mockData = ["apple", "meta", "삼성", "LG"];
-
 interface Props {
+  dataList: string[];
   selectedItem: string;
   setSelectedItem: React.Dispatch<React.SetStateAction<string>>;
   setClicked: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const DropdownList = ({ selectedItem, setSelectedItem, setClicked }: Props) => {
+const DropdownList = ({ dataList, selectedItem, setSelectedItem, setClicked }: Props) => {
   const itemClickHandler = (v: string) => {
     setSelectedItem(v);
     setClicked(false);
@@ -28,7 +27,7 @@ const DropdownList = ({ selectedItem, setSelectedItem, setClicked }: Props) => {
     bg-white
     "
     >
-      {mockData.map((v, idx) => {
+      {dataList.map((v, idx) => {
         return (
           <div
             key={idx}

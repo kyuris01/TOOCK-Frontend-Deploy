@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import DownArrow from "@/assets/down-arrow.svg";
 import DropdownList from "./DropdownList";
 
-const Dropdown = () => {
+const Dropdown = ({ dataList }: { dataList: string[] }) => {
   const [clicked, setClicked] = useState<boolean>(false);
   const [selectedItem, setSelectedItem] = useState<string>("");
   return (
@@ -24,6 +24,7 @@ const Dropdown = () => {
           selectedItem={selectedItem}
           setSelectedItem={setSelectedItem}
           setClicked={setClicked}
+          dataList={dataList}
         />
       )}
     </div>
