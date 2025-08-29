@@ -7,26 +7,38 @@ import Button from "@/app/ui/Button";
 import Play from "@/assets/play.svg";
 import { INTERVIEW_RULES } from "../constants/interviewRules.constants";
 import { fetchCompanyAndJobList } from "@/app/api/interview/fetchCompanyJobList";
+import { useInterviewStore } from "@/stores/interview.store";
+import { toast } from "react-toastify";
 
 interface InterviewSetting {
   id: number;
   label: string;
-  data?: string[];
+  dataList?: string[];
+  value?: string;
+  dataSetter?: (value: string) => void;
 }
 
-const mockData1 = ["apple", "meta", "삼성", "LG"];
-const mockData2 = ["프론트엔드", "백엔드", "디자이너", "PM"];
-
-const InterviewSettingBox = () => {
+const InterviewSettingBox = ({
+  setIsModal,
+}: {
+  setIsModal: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const [interviewSettings, setInterviewSettings] =
     useState<InterviewSetting[]>(INTERVIEW_SETTING_CONFIG);
   const [companyList, setCompanyList] = useState<string[]>([]);
   const [jobList, setJobList] = useState<string[]>([]);
 
+  // 전역 상태/액션
+  const selectedCompany = useInterviewStore((s) => s.selectedCompany);
+  const selectedJob = useInterviewStore((s) => s.selectedJob);
+  const setSelectedCompany = useInterviewStore((s) => s.setSelectedCompany);
+  const setSelectedJob = useInterviewStore((s) => s.setSelectedJob);
+
   useEffect(() => {
     fetchCompanyAndJobList().then((res) => {
       if (res === null) {
         setCompanyList([]);
+        setJobList([]);
       } else {
         setCompanyList(res.data.company);
         setJobList(res.data.job);
@@ -36,21 +48,38 @@ const InterviewSettingBox = () => {
 
   useEffect(() => {
     const updatedSettings = INTERVIEW_SETTING_CONFIG.map((v, _) => {
-      let data;
       switch (v.id) {
         case 0:
-          data = companyList;
-          break;
+          return {
+            ...v,
+            dataList: companyList,
+            value: selectedCompany,
+            dataSetter: setSelectedCompany,
+          };
         case 1:
-          data = jobList;
-          break;
+          return { ...v, dataList: jobList, value: selectedJob, dataSetter: setSelectedJob };
+        default:
+          return v;
       }
-      return { ...v, data: data };
     });
     setInterviewSettings(updatedSettings);
-  }, [companyList, jobList]);
+  }, [companyList, jobList, selectedCompany, selectedJob]);
 
-  const clickStartInterviewHandler = () => {};
+  const clickStartInterviewHandler = () => {
+    if (!selectedCompany || !selectedJob) {
+      toast.error("기업과 직무를 모두 선택해주세요!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+      });
+      return;
+    }
+    setIsModal(true);
+  };
   return (
     <div className="flex flex-col justify-between w-full h-[25rem] rounded-md border p-5">
       <div>
@@ -60,11 +89,17 @@ const InterviewSettingBox = () => {
       </div>
 
       <div className="flex flex-col gap-2">
-        {INTERVIEW_SETTING_CONFIG.map((v, idx) => {
+        {interviewSettings.map((v, idx) => {
           return (
             <div key={v.id}>
               <div>{v.label}</div>
-              {interviewSettings && <Dropdown dataList={interviewSettings[idx].data || []} />}
+              {interviewSettings && (
+                <Dropdown
+                  dataList={v.dataList ?? []}
+                  onChange={v.dataSetter ?? (() => {})}
+                  value={v.value ?? ""}
+                />
+              )}
             </div>
           );
         })}

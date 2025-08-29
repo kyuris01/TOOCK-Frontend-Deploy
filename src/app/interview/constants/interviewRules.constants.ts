@@ -16,3 +16,22 @@ export const INTERVIEW_RULES = [
     text: "면접 종료 후 상세한 피드백을 받을 수 있습니다",
   },
 ];
+
+export const INTERVIEW_RULES_DETAIL = [
+  {
+    id: 0,
+    text: "총 5개의 질문이 진행됩니다",
+  },
+  {
+    id: 1,
+    text: "각 질문은 음성으로 제시됩니다",
+  },
+  {
+    id: 2,
+    text: "마이크 버튼을 눌러 답변을 녹음하세요",
+  },
+  {
+    id: 3,
+    text: "답변 완료 후 다음 질문으로 진행됩니다",
+  },
+];

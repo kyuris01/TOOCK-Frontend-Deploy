@@ -6,7 +6,7 @@ import clsx from "clsx";
 interface Props {
   dataList: string[];
   selectedItem: string;
-  setSelectedItem: React.Dispatch<React.SetStateAction<string>>;
+  setSelectedItem: (value: string) => void;
   setClicked: React.Dispatch<React.SetStateAction<boolean>>;
 }
 

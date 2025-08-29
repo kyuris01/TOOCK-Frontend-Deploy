@@ -1,12 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DownArrow from "@/assets/down-arrow.svg";
 import DropdownList from "./DropdownList";
 
-const Dropdown = ({ dataList }: { dataList: string[] }) => {
+interface Props {
+  dataList: string[];
+  value: string;
+  onChange: (value: string) => void;
+}
+
+const Dropdown = ({ dataList, value, onChange }: Props) => {
   const [clicked, setClicked] = useState<boolean>(false);
-  const [selectedItem, setSelectedItem] = useState<string>("");
+
   return (
     <div className="relative flex flex-col w-full">
       <div
@@ -15,14 +21,14 @@ const Dropdown = ({ dataList }: { dataList: string[] }) => {
         }}
         className="flex flex-row items-center justify-between w-full h-[2rem] border border-b-2 rounded-md p-2"
       >
-        <div>{selectedItem}</div>
+        <div>{value}</div>
         <DownArrow width="0.7rem" height="0.7rem" />
       </div>
 
       {clicked && (
         <DropdownList
-          selectedItem={selectedItem}
-          setSelectedItem={setSelectedItem}
+          selectedItem={value}
+          setSelectedItem={onChange}
           setClicked={setClicked}
           dataList={dataList}
         />
