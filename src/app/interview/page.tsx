@@ -14,7 +14,7 @@ const Page = () => {
   const [questionNum, setQuestionNum] = useState<number>(0);
 
   const { isPending, isError, data, error } = useQuery({
-    queryKey: ["questions"],
+    queryKey: ["questions", company, job],
     queryFn: () => fetchInterviewQuestions(company, job),
   });
 

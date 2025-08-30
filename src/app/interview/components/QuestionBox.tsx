@@ -1,9 +1,17 @@
 import Button from "@/app/ui/Button";
-import React from "react";
+import React, { useEffect } from "react";
 import Play from "@/assets/play.svg";
+import { useBrowserTTS } from "@/utils/useBrowserTTS";
 
 const QuestionBox = ({ question, qNum }: { question: string; qNum: number }) => {
-  const listenAgainBtnClickHandler = () => {};
+  const { speakQuestion, isSpeaking, isSupported } = useBrowserTTS({ question, qNum });
+  const listenAgainBtnClickHandler = () => {
+    speakQuestion();
+  };
+
+  useEffect(() => {
+    speakQuestion();
+  }, []);
   return (
     <div className="flex flex-col justify-between w-full h-[6rem] bg-slate-400 rounded-md p-3">
       <div className="flex flex-row justify-between items-center">
