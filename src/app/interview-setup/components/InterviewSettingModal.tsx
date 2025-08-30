@@ -11,12 +11,15 @@ const InterviewSettingModal = ({
 }) => {
   const company = useInterviewStore((s) => s.selectedCompany);
   const job = useInterviewStore((s) => s.selectedJob);
+  const router = useRouter();
 
   const cancelBtnClickHandler = () => {
     setIsModal(false);
   };
 
-  const startInterviewBtnClickHandler = () => {};
+  const startInterviewBtnClickHandler = () => {
+    router.push(`/interview`);
+  };
 
   return (
     <div className="flex flex-col justify-between w-full h-full">

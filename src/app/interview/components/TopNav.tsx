@@ -1,36 +1,41 @@
 "use client";
 
 import Button from "@/app/ui/Button";
-import React from "react";
-import LeftArrow from "@/assets/left-arrow.svg";
+import { useInterviewStore } from "@/stores/interview.store";
 import { useRouter } from "next/navigation";
+import React from "react";
+import { BeatLoader } from "react-spinners";
 
 const TopNav = () => {
+  const company = useInterviewStore((s) => s.selectedCompany);
+  const job = useInterviewStore((s) => s.selectedJob);
   const router = useRouter();
 
-  const clickBackHandler = () => {
-    router.back();
+  const exitBtnClickHandler = () => {
+    router.push("/dashboard");
   };
-
   return (
-    <div className="flex justify-center items-center w-full h-15 shadow-xl">
-      <div className="flex justify-between items-center sm:w-[70%] w-[100%]">
-        <Button
-          label={"돌아가기"}
-          icon={
-            <LeftArrow
-              width="0.7rem"
-              height="0.7rem"
-              className="text-black group-hover:text-white"
-            />
-          }
-          clickHandler={clickBackHandler}
-          color="black"
-          hoverColor="white"
-          bgColor="white"
-          hoverBgColor="black"
-        />
+    <div className="flex flex-row justify-between items-center w-full h-15 bg-white px-5">
+      <div className="flex flex-row justify-start items-center gap-5">
+        <BeatLoader speedMultiplier={0.5} />
+        <div className="flex flex-row gap-3">
+          <div className="flex justify-center items-center rounded-2xl border-2 border-black px-3 py-1 text-xs">
+            {company}
+          </div>
+          <div className="flex justify-center items-center rounded-2xl border-2 border-black px-3 py-1 text-xs">
+            {job}
+          </div>
+        </div>
       </div>
+      <Button
+        label={"면접 종료"}
+        clickHandler={exitBtnClickHandler}
+        color="black"
+        hoverColor="white"
+        bgColor="white"
+        hoverBgColor="black"
+        border={"solid 1px black"}
+      />
     </div>
   );
 };

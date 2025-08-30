@@ -12,7 +12,7 @@ const TopNav = () => {
   const router = useRouter();
 
   const clickInterviewHandler = () => {
-    router.push("/interview");
+    router.push("/interview-setup");
   };
   const clickLogoutHandler = () => {};
   return (

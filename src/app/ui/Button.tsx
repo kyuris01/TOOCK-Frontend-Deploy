@@ -10,6 +10,7 @@ interface Props {
   color?: string;
   hoverBgColor?: string;
   hoverColor?: string;
+  border?: string;
   gradient?: string;
   icon?: React.ReactNode;
   clickHandler: () => void;
@@ -23,6 +24,7 @@ const Button = ({
   color,
   hoverBgColor,
   hoverColor,
+  border,
   icon,
   gradient,
   clickHandler,
@@ -40,6 +42,7 @@ const Button = ({
         backgroundColor: currentBgColor,
         color: currentColor,
         backgroundImage: gradient,
+        border: `${border}`,
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
