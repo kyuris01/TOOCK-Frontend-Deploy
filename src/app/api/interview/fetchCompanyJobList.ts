@@ -15,7 +15,7 @@ export const fetchCompanyAndJobList = async () => {
     console.log(response);
     return response;
   } catch (error) {
-    console.error("[Company And Job List error]", error);
+    console.error("[Company And Job List Fetch Error]", error);
     return null;
   }
 };

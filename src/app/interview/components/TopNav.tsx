@@ -15,10 +15,10 @@ const TopNav = () => {
     router.push("/dashboard");
   };
   return (
-    <div className="flex flex-row justify-between items-center w-full h-15 bg-white px-5">
+    <div className="flex flex-row justify-between items-center w-full h-15 bg-white px-5 border-b">
       <div className="flex flex-row justify-start items-center gap-5">
         <BeatLoader speedMultiplier={0.5} />
-        <div className="flex flex-row gap-3">
+        <div className="hidden sm:flex flex-row gap-3">
           <div className="flex justify-center items-center rounded-2xl border-2 border-black px-3 py-1 text-xs">
             {company}
           </div>

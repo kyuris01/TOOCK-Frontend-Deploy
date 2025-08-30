@@ -33,7 +33,7 @@ const InterviewSettingModal = ({
         <ul className="list-disc list-inside">
           {INTERVIEW_RULES_DETAIL.map((v) => {
             return (
-              <li key={v.id} className="px-5 text-lg">
+              <li key={v.id} className="px-5 text-sm sm:text-lg">
                 {v.text}
               </li>
             );
