@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import TopNav from "./components/TopNav";
 import InterviewContainer from "./components/InterviewContainer";
 import { fetchInterviewQuestions } from "../api/interview/fetchInterviewQuestions";
 import { useQuery } from "@tanstack/react-query";
@@ -18,11 +17,8 @@ const Page = () => {
     queryFn: () => fetchInterviewQuestions(company, job),
   });
 
-  useEffect(() => {
-    console.log("data:", data);
-  }, [data]);
   return (
-    <div className="flex-1 p-3 bg-white">
+    <div className="p-3 h-full bg-white">
       {data ? (
         <InterviewContainer
           question={data.data[questionNum].question}
@@ -30,7 +26,9 @@ const Page = () => {
           setQuestionNum={setQuestionNum}
         />
       ) : (
-        <MoonLoader />
+        <div className="flex justify-center items-center h-full">
+          <MoonLoader />
+        </div>
       )}
     </div>
   );

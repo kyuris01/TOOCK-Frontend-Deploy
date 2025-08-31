@@ -9,9 +9,6 @@ const QuestionBox = ({ question, qNum }: { question: string; qNum: number }) => 
     speakQuestion();
   };
 
-  useEffect(() => {
-    speakQuestion();
-  }, []);
   return (
     <div className="flex flex-col justify-between w-full h-[6rem] bg-slate-400 rounded-md p-3">
       <div className="flex flex-row justify-between items-center">
@@ -21,6 +18,7 @@ const QuestionBox = ({ question, qNum }: { question: string; qNum: number }) => 
           clickHandler={listenAgainBtnClickHandler}
           icon={<Play width="0.7rem" height="0.7rem" />}
           border="solid black 1px"
+          width="7rem"
         />
       </div>
       <div>{question}</div>
