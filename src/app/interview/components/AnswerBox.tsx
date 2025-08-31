@@ -23,10 +23,10 @@ const AnswerBox = () => {
       <div className="flex flex-row items-center justify-between">
         <div>
           <div className="text-xl font-semibold">답변</div>
-          <div className="text-sm">마이크 버튼을 눌러 답변을 시작하세요</div>
+          <div className="hidden sm:block text-sm">마이크 버튼을 눌러 답변을 시작하세요</div>
         </div>
         <Button
-          label={"녹음 시작"}
+          label={isRecording ? "녹음 중지" : "녹음 시작"}
           clickHandler={recordBtnClickHandler}
           icon={
             isRecording ? (
