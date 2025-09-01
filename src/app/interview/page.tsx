@@ -23,6 +23,7 @@ const Page = () => {
         <InterviewContainer
           question={data.data[questionNum].question}
           qNum={questionNum}
+          totalQNum={data.data.length}
           setQuestionNum={setQuestionNum}
         />
       ) : (

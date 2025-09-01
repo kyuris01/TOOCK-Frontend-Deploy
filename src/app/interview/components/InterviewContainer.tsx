@@ -7,13 +7,20 @@ import { useAudioRecorder } from "@/utils/useAudioRecorder";
 interface Props {
   question: string;
   qNum: number;
+  totalQNum: number;
   setQuestionNum: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const InterviewContainer = ({ question, qNum, setQuestionNum }: Props) => {
+const InterviewContainer = ({ question, qNum, totalQNum, setQuestionNum }: Props) => {
   const { reset } = useAudioRecorder();
   const answerResetBtnHandler = () => {
     reset();
+  };
+  const nextBtnHandler = () => {
+    if (qNum === totalQNum) {
+    } else {
+      setQuestionNum((prev) => prev + 1);
+    }
   };
   return (
     <div className="flex flex-col gap-3 w-full h-[30rem]">
@@ -31,11 +38,7 @@ const InterviewContainer = ({ question, qNum, setQuestionNum }: Props) => {
             clickHandler={() => setQuestionNum((prev) => prev + 1)}
             border="solid black 1px"
           />
-          <Button
-            label={"다음 질문"}
-            clickHandler={() => setQuestionNum((prev) => prev + 1)}
-            border="solid black 1px"
-          />
+          <Button label={"다음 질문"} clickHandler={nextBtnHandler} border="solid black 1px" />
         </div>
       </div>
     </div>
