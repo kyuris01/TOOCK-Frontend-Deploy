@@ -11,7 +11,7 @@ const ResultCard = ({ title, subtitle, content }: Props) => {
     <div className="flex flex-col justify-start items-start gap-1 w-full p-3 bg-slate-400 rounded-md border">
       <div className="text-white text-lg font-semibold">{title}</div>
       <div className="text-sm font-normal">{subtitle}</div>
-      <div className="w-full">{content}</div>
+      <div className="flex flex-col items-center justify-start w-full">{content}</div>
     </div>
   );
 };

@@ -8,6 +8,7 @@ import { COLUMN1 } from "../constants/InterviewResults.contants";
 import ResultCard from "./ResultCard";
 import TotalScoreContentsComp from "./TotalScoreContents";
 import DetailScoreContents from "./DetailScoreContents";
+import AbilityDistributionContents from "./AbilityDistributionContents";
 
 const InterviewResultContainer = () => {
   const company = useInterviewStore((s) => s.selectedCompany);
@@ -22,13 +23,15 @@ const InterviewResultContainer = () => {
       return <TotalScoreContentsComp data={data.totalScore} />;
     } else if (item.title === "세부 평가" && data) {
       return <DetailScoreContents data={data.detailScore} />;
+    } else if (item.title === "역량 분포" && data) {
+      return <AbilityDistributionContents data={data.detailScore} />;
     }
     return null;
   };
 
   return (
-    <div className="flex flex-row items-center justify-start w-full h-full sm:w-[70%] bg-white mt-3">
-      <div className="flex flex-col justify-start w-[40%] h-full gap-5">
+    <div className="flex flex-col sm:flex-row items-center justify-start w-full h-full sm:w-[70%] bg-white my-3">
+      <div className="flex flex-col justify-start w-full px-3 sm:w-[40%] h-full gap-5">
         {COLUMN1.map((v) => {
           return (
             <ResultCard
