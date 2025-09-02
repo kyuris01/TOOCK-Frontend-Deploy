@@ -7,6 +7,7 @@ import React, { useEffect } from "react";
 import { COLUMN1 } from "../constants/InterviewResults.contants";
 import ResultCard from "./ResultCard";
 import TotalScoreContentsComp from "./TotalScoreContents";
+import DetailScoreContents from "./DetailScoreContents";
 
 const InterviewResultContainer = () => {
   const company = useInterviewStore((s) => s.selectedCompany);
@@ -20,7 +21,7 @@ const InterviewResultContainer = () => {
     if (item.title === "종합 점수" && data) {
       return <TotalScoreContentsComp data={data.totalScore} />;
     } else if (item.title === "세부 평가" && data) {
-      return;
+      return <DetailScoreContents data={data.detailScore} />;
     }
     return null;
   };
