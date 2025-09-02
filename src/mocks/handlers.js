@@ -41,4 +41,101 @@ export const handlers = [
       ],
     });
   }),
+  http.post("*/send-interview", async ({ request }) => {
+    // FormData 파싱
+    const form = await request.formData();
+    const file = form.get("file");
+    console.log("왜 안돼...");
+
+    // "file" 필드 유효성 체크
+    if (!(file instanceof File)) {
+      return HttpResponse.json(
+        {
+          isSuccess: false,
+          code: 400,
+          message: "업로드할 파일이 없습니다. (필드명: file)",
+        },
+        { status: 400 }
+      );
+    }
+
+    // 파일 메타데이터 수집
+    const meta = {
+      filename: file.name,
+      mimeType: file.type,
+      size: file.size, // 바이트 단위
+    };
+
+    // 필요하면 파일 내용을 실제로 읽을 수도 있음
+    // const buf = await file.arrayBuffer();
+
+    // 업로드 성공 응답 (실 서비스라면 업로드 처리 결과/URL 등을 내려주면 됨)
+    return HttpResponse.json({
+      isSuccess: true,
+      code: 200,
+      message: "오디오 업로드 성공",
+      data: {
+        uploadId: crypto.randomUUID?.() ?? String(Date.now()),
+        ...meta,
+        // 예시: 변환 결과나 저장 위치 등을 내려줄 수도 있어요.
+        // url: "https://cdn.example.com/uploads/record.m4a"
+      },
+    });
+  }),
+  http.get("*/interview-results", ({ request }) => {
+    const url = new URL(request.url);
+    const company = url.searchParams.get("company");
+    const job = url.searchParams.get("job");
+    console.log(company, job);
+    return HttpResponse.json({
+      isSuccess: true,
+      code: 200,
+      message: "면접 결과 조회 성공",
+      data: {
+        totalScore: 9,
+        detailScore: {
+          technic: 8,
+          communication: 10,
+          logic: 6,
+          problemSolving: 0,
+        },
+        AIfeedback:
+          "제법 잘했지만 별로다 닝겐 앞으로는 좀 더 열심히 하도록 하하하핳하하하하하하하핳하하하하핳",
+        questionAndAnswer: [
+          {
+            id: 0,
+            question: "아아아아아",
+            answer: "아아아아안ㄴㄴㄴㄴ",
+          },
+          {
+            id: 1,
+            question: "아아아아아",
+            answer: "아아아아안ㄴㄴㄴㄴ",
+          },
+          {
+            id: 2,
+            question: "아아아아아",
+            answer: "아아아아안ㄴㄴㄴㄴ",
+          },
+          {
+            id: 3,
+            question: "아아아아아",
+            answer: "아아아아안ㄴㄴㄴㄴ",
+          },
+        ],
+        improvementProposal: {
+          strength: [
+            "명확하고 논리적인 답변 구성",
+            "구체적인 프로젝트 경험 제시",
+            "적절한 기술적 용어 사용",
+          ],
+          weeknesss: [
+            "답변 시간 조절 (너무 길거나 짧지 않게)",
+            "더 구체적인 수치나 결과 제시",
+            "팀워크 경험에 대한 구체적 사례 준비",
+          ],
+        },
+      },
+    });
+  }),
 ];

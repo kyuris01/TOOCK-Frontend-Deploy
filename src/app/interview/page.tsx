@@ -21,7 +21,7 @@ const Page = () => {
     <div className="p-3 h-full bg-white">
       {data ? (
         <InterviewContainer
-          question={data.data[questionNum].question}
+          question={data.data[questionNum]?.question}
           qNum={questionNum}
           totalQNum={data.data.length}
           setQuestionNum={setQuestionNum}

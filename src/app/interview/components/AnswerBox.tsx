@@ -5,8 +5,14 @@ import MicOff from "@/assets/micOff.svg";
 import { useAudioRecorder } from "@/utils/useAudioRecorder";
 import { useSpeechToText } from "@/utils/useBrowserSTT";
 
-const AnswerBox = () => {
-  const { isRecording, start, stop, togglePause, audioURL } = useAudioRecorder();
+interface Props {
+  isRecording: boolean;
+  start: () => Promise<void>;
+  stop: () => void;
+  audioURL: string | null;
+}
+
+const AnswerBox = ({ isRecording, start, stop, audioURL }: Props) => {
   const { supported, text, setText, start: sttStart, stop: sttStop } = useSpeechToText("ko-KR");
 
   const recordBtnClickHandler = () => {
@@ -42,7 +48,7 @@ const AnswerBox = () => {
       </div>
       <textarea
         placeholder="여기에 답변이 표시됩니다..."
-        value={text}
+        defaultValue={text}
         className="flex-1 rounded-sm bg-slate-300 p-2"
       ></textarea>
       <audio controls src={audioURL as string} className="w-full" />
