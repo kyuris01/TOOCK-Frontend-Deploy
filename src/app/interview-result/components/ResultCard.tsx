@@ -1,6 +1,12 @@
 import React from "react";
 
-const ResultCard = () => {
+interface Props {
+  title: string;
+  subtitle: string;
+  content: React.ReactNode;
+}
+
+const ResultCard = ({ title, subtitle, data }: Props) => {
   return <div></div>;
 };
 
