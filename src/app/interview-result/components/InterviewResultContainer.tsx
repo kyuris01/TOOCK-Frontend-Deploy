@@ -10,6 +10,7 @@ import TotalScoreContentsComp from "./TotalScoreContents";
 import DetailScoreContents from "./DetailScoreContents";
 import AbilityDistributionContents from "./AbilityDistributionContents";
 import QAndAContents from "./QAndAContents";
+import ImprovementsProposalContents from "./ImprovementsProposalContents";
 
 const InterviewResultContainer = () => {
   const company = useInterviewStore((s) => s.selectedCompany);
@@ -35,8 +36,8 @@ const InterviewResultContainer = () => {
       return <div>{data.AIfeedback}</div>;
     } else if (item.title === "질문 및 답변 기록" && data) {
       return <QAndAContents data={data.questionAndAnswer} />;
-    } else if (item.title === "질문 및 답변 기록" && data) {
-      return <AbilityDistributionContents data={data.detailScore} />;
+    } else if (item.title === "개선 제안" && data) {
+      return <ImprovementsProposalContents data={data.improvementProposal} />;
     }
     return null;
   };

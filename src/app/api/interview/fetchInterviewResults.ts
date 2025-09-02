@@ -13,9 +13,14 @@ export type InterviewQandA = {
   answer: string;
 };
 
-type InterviewImprovementProposal = {
-  strength: string[];
-  weekness: string[];
+export type InterviewImprovementProposalData = {
+  id: number;
+  text: string;
+};
+
+export type InterviewImprovementProposal = {
+  strength: InterviewImprovementProposalData[];
+  weekness: InterviewImprovementProposalData[];
 };
 
 interface InterviewResult {
