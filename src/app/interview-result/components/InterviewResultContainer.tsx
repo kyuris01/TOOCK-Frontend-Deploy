@@ -3,8 +3,8 @@
 import { fetchInterviewResults } from "@/app/api/interview/fetchInterviewResults";
 import { useInterviewStore } from "@/stores/interview.store";
 import { useQuery } from "@tanstack/react-query";
-import React, { useEffect } from "react";
-import { COLUMN1 } from "../constants/InterviewResults.contants";
+import React from "react";
+import { COLUMN1, COLUMN2 } from "../constants/InterviewResults.contants";
 import ResultCard from "./ResultCard";
 import TotalScoreContentsComp from "./TotalScoreContents";
 import DetailScoreContents from "./DetailScoreContents";
@@ -29,9 +29,20 @@ const InterviewResultContainer = () => {
     return null;
   };
 
+  const getContentOfColumn2 = (item: (typeof COLUMN2)[number]) => {
+    if (item.title === "AI 피드백" && data) {
+      return <div>{data.AIfeedback}</div>;
+    } else if (item.title === "세부 평가" && data) {
+      return <DetailScoreContents data={data.detailScore} />;
+    } else if (item.title === "역량 분포" && data) {
+      return <AbilityDistributionContents data={data.detailScore} />;
+    }
+    return null;
+  };
+
   return (
-    <div className="flex flex-col sm:flex-row items-center justify-start w-full h-full sm:w-[70%] bg-white my-3">
-      <div className="flex flex-col justify-start w-full px-3 sm:w-[40%] h-full gap-5">
+    <div className="flex flex-col sm:flex-row justify-start w-full h-full sm:w-[70%] bg-white my-3 gap-5">
+      <div className="flex flex-col justify-start gap-5 w-full h-full px-3 sm:w-[40%]">
         {COLUMN1.map((v) => {
           return (
             <ResultCard
@@ -43,7 +54,18 @@ const InterviewResultContainer = () => {
           );
         })}
       </div>
-      <div className="flex flex-col justify-start w-[60%] h-full"></div>
+      <div className="flex flex-col justify-start gap-5 w-full h-full px-3 sm:w-[60%]">
+        {COLUMN2.map((v) => {
+          return (
+            <ResultCard
+              key={v.id}
+              title={v.title}
+              subtitle={v.subtitle}
+              content={getContentOfColumn2(v)}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };
