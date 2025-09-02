@@ -7,7 +7,7 @@ export type InterviewDetailScore = {
   problemSolving: number;
 };
 
-type InterviewQandA = {
+export type InterviewQandA = {
   id: number;
   question: string;
   answer: string;
