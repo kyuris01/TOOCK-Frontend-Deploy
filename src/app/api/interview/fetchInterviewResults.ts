@@ -1,6 +1,6 @@
 import { ApiResponse, client } from "../client";
 
-type InterviewDetailScore = {
+export type InterviewDetailScore = {
   technic: number;
   communication: number;
   logic: number;

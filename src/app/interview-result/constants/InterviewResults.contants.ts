@@ -10,7 +10,7 @@ export const COLUMN1 = [
     subtitle: "영역별 상세 점수",
   },
   {
-    id: 0,
+    id: 2,
     title: "역량 분포",
     subtitle: "시각화된 역량 분석",
   },
