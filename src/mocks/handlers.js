@@ -68,6 +68,7 @@ export const handlers = [
 
     // 필요하면 파일 내용을 실제로 읽을 수도 있음
     // const buf = await file.arrayBuffer();
+    setTimeout(() => {}, 5000);
 
     // 업로드 성공 응답 (실 서비스라면 업로드 처리 결과/URL 등을 내려주면 됨)
     return HttpResponse.json({
