@@ -21,6 +21,8 @@ const DropdownList = ({ dataList, selectedItem, setSelectedItem, setClicked }: P
     absolute top-[2.3rem] left-0 
     flex flex-col
     w-full 
+    mt-2
+    p-1
     border border-b-2
     z-999 
     rounded-md
@@ -33,7 +35,7 @@ const DropdownList = ({ dataList, selectedItem, setSelectedItem, setClicked }: P
             key={idx}
             onClick={() => itemClickHandler(v)}
             className={clsx(
-              "flex items-center justify-start h-8 mx-1 my-1 px-2 rounded-md",
+              "h-8 px-2 rounded-md w-full truncate text-center leading-8",
               v === selectedItem ? "bg-slate-500 text-white" : ""
             )}
           >

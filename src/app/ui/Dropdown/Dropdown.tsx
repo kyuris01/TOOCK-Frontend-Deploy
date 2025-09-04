@@ -19,9 +19,9 @@ const Dropdown = ({ dataList, value, onChange }: Props) => {
         onClick={() => {
           setClicked((prev) => !prev);
         }}
-        className="flex flex-row items-center justify-between w-full h-[2rem] border border-b-2 rounded-md p-2"
+        className="flex flex-row items-center justify-between w-full h-[2.5rem] border border-b-2 rounded-md p-2"
       >
-        <div>{value}</div>
+        <div className="w-full truncate">{value}</div>
         <DownArrow width="0.7rem" height="0.7rem" />
       </div>
 
