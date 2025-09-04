@@ -10,7 +10,7 @@ const StatSection = () => {
       className="
       flex flex-col sm:flex-row gap-5 
       w-[100%]
-      p-3 sm:p-0"
+      "
     >
       {STATS_CONFIG.map((item, index) => {
         return { ...item, data: dataArr[index] };

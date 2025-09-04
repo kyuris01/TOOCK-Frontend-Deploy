@@ -16,7 +16,7 @@ const TopNav = () => {
   };
   const clickLogoutHandler = () => {};
   return (
-    <div className="flex justify-center items-center w-full h-15 shadow-xl">
+    <div className="flex justify-center items-center w-full h-15 shadow-md">
       <div className="flex justify-between items-center sm:w-[70%] w-[100%]">
         <div className="flex flex-row">
           <Logo className="w-16 h-16 text-blue-950" />

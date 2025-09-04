@@ -157,4 +157,45 @@ export const handlers = [
       },
     });
   }),
+  http.get("*/interview-records", ({ request }) => {
+    return HttpResponse.json({
+      isSuccess: true,
+      code: 200,
+      message: "인터뷰 기록 조회 성공",
+      data: [
+        {
+          id: 0,
+          company: "Meta",
+          job: "프론트엔드 개발자",
+          date: "2025-06-28",
+          totalScore: 8,
+          totalQuestionNum: 5,
+        },
+        {
+          id: 0,
+          company: "Meta",
+          job: "프론트엔드 개발자",
+          date: "2025-06-28",
+          totalScore: 4,
+          totalQuestionNum: 3,
+        },
+        {
+          id: 0,
+          company: "애플",
+          job: "백엔드 개발자",
+          date: "2025-06-28",
+          totalScore: 7,
+          totalQuestionNum: 2,
+        },
+        {
+          id: 0,
+          company: "삼성",
+          job: "데이터 엔지니어",
+          date: "2025-06-28",
+          totalScore: 10,
+          totalQuestionNum: 5,
+        },
+      ],
+    });
+  }),
 ];
