@@ -44,7 +44,7 @@ const Page = () => {
     document.body
   );
   return (
-    <div className="flex flex-col items-center justify-start gap-5 min-h-screen w-full bg-white">
+    <div className="flex flex-col items-center justify-start gap-5 min-h-screen w-full">
       <TopNav />
       <div className="w-[100%] sm:w-[70%] mt-3 p-3 sm:p-0">
         <InterviewSettingBox setIsModal={setIsModal} />

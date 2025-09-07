@@ -10,9 +10,10 @@ interface Props {
   onChange: (value: string) => void;
   color?: string;
   bgColor?: string;
+  border?: string;
 }
 
-const Dropdown = ({ dataList, value, onChange, color, bgColor }: Props) => {
+const Dropdown = ({ dataList, value, onChange, color, bgColor, border }: Props) => {
   const [clicked, setClicked] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -37,20 +38,19 @@ const Dropdown = ({ dataList, value, onChange, color, bgColor }: Props) => {
   return (
     <div
       ref={dropdownRef}
-      className="relative flex flex-col w-full"
-      style={{ backgroundColor: bgColor }}
+      className="relative flex flex-col w-full rounded-md px-1"
+      style={{ backgroundColor: bgColor, border: border }}
     >
       <div
         onClick={() => {
           setClicked((prev) => !prev);
         }}
-        className="flex flex-row items-center justify-between w-full h-[2.5rem] border rounded-md p-2"
-        style={{ borderColor: color }}
+        className="flex flex-row items-center justify-between w-full h-[2.5rem] p-2"
       >
         <div className="w-full truncate" style={{ color: color }}>
           {value}
         </div>
-        <DownArrow width="0.7rem" height="0.7rem" color="white" />
+        <DownArrow width="0.7rem" height="0.7rem" />
       </div>
 
       {clicked && (

@@ -81,23 +81,25 @@ const InterviewSettingBox = ({
     setIsModal(true);
   };
   return (
-    <div className="flex flex-col justify-between w-full h-[25rem] rounded-md border p-5">
-      <div>
-        <div className="text-lg">면접 설정</div>
-        <div className="text-sm">지원하고자 하는 기업과 직무를 선택해주세요</div>
-        <div className="text-sm">선택한 정보를 바탕으로 맞춤형 면접 질문이 생성됩니다</div>
+    <div className="flex flex-col justify-between gap-5 w-full h-auto rounded-md p-5 bg-blue-1 drop-shadow-xl text-blue-950">
+      <div className="flex flex-col gap-1">
+        <div className="text-xl font-semibold">면접 설정</div>
+        <div>
+          <div className="text-sm">지원하고자 하는 기업과 직무를 선택해주세요</div>
+          <div className="text-sm">선택한 정보를 바탕으로 맞춤형 면접 질문이 생성됩니다</div>
+        </div>
       </div>
-
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-3">
         {interviewSettings.map((v, idx) => {
           return (
-            <div key={v.id}>
+            <div key={v.id} className="flex flex-col gap-1 p-3 rounded-md ring-1 ring-blue-950">
               <div>{v.label}</div>
               {interviewSettings && (
                 <Dropdown
                   dataList={v.dataList ?? []}
                   onChange={v.dataSetter ?? (() => {})}
                   value={v.value ?? ""}
+                  bgColor="white"
                 />
               )}
             </div>
@@ -109,7 +111,8 @@ const InterviewSettingBox = ({
         width={"100%"}
         height={"2.5rem"}
         icon={<Play width="0.7rem" height="0.7rem" />}
-        gradient="linear-gradient(90deg, #3b82f6, #a855f7)"
+        bgColor="var(--color-blue-950)"
+        color="white"
         clickHandler={clickStartInterviewHandler}
       />
       <div>

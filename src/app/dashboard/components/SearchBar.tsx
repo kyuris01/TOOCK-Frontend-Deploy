@@ -35,14 +35,14 @@ const SearchBar = ({
   };
 
   return (
-    <div className="flex flex-col sm:flex-row gap-3 w-full" style={{ backgroundColor: bgColor }}>
+    <div className="flex flex-col sm:flex-row gap-3 w-full p-3 rounded-md shadow-lg ring-1 ring-blue-950">
       <div
-        className="flex flex-row items-center justify-start gap-3 w-full sm:w-[60%] rounded-md border px-3 py-1"
-        style={{ color: color, borderColor: color }}
+        className="flex flex-row items-center justify-start gap-3 w-full sm:w-[60%] rounded-md px-3 py-1"
+        style={{ color: color, borderColor: color, backgroundColor: bgColor }}
       >
         <MagnifyingGlasses width={"1.2rem"} height={"1.2rem"} />
         <input
-          className="w-full placeholder-white"
+          className="w-full"
           type="text"
           placeholder="기업명 또는 직무를 입력하세요"
           onChange={handleInputChange}
@@ -54,7 +54,8 @@ const SearchBar = ({
             dataList={data?.data.company ?? []}
             onChange={setSelectedCompany}
             value={selectedCompany}
-            color={"white"}
+            color={"#162456"}
+            bgColor={"#e6f1ff"}
           />
         </div>
         <div className="w-[50%]">
@@ -62,7 +63,8 @@ const SearchBar = ({
             dataList={data?.data.job ?? []}
             onChange={setSelectedJob}
             value={selectedJob}
-            color={"white"}
+            color={"#162456"}
+            bgColor={"#e6f1ff"}
           />
         </div>
       </div>

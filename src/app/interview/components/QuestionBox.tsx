@@ -1,5 +1,5 @@
 import Button from "@/app/ui/Button";
-import React, { useEffect } from "react";
+import React from "react";
 import Play from "@/assets/play.svg";
 import { useBrowserTTS } from "@/utils/useBrowserTTS";
 
@@ -17,7 +17,7 @@ const QuestionBox = ({ question, qNum }: { question: string; qNum: number }) => 
           label={"다시 듣기"}
           clickHandler={listenAgainBtnClickHandler}
           icon={<Play width="0.7rem" height="0.7rem" />}
-          border="solid black 1px"
+          border="solid var(--color-blue-950) 1px"
           width="7rem"
         />
       </div>
