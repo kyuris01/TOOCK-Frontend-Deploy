@@ -14,24 +14,26 @@ const Page = () => {
   return (
     <div className="flex flex-col justify-start items-center bg-white w-full min-h-dvh">
       <TopNav />
-      <div className="flex flex-col justify-start gap-5 w-[100%] sm:w-[70%] mt-5 p-3 sm:p-0 flex-1">
+      <div className="flex flex-col justify-start gap-20 sm:gap-5 w-[100%] sm:w-[70%] mt-5 p-3 sm:p-0 flex-1">
         <StatSection />
-        <SearchBar
-          setUserInput={setUserInput}
-          setSelectedCompany={setSelectedCompany}
-          setSelectedJob={setSelectedJob}
-          selectedCompany={selectedCompany}
-          selectedJob={selectedJob}
-          bgColor={"var(--color-blue-1)"}
-          color={"var(--color-blue-2)"}
-        />
-        <RecordSection
-          userInput={userInput}
-          selectedCompany={selectedCompany}
-          selectedJob={selectedJob}
-          setSelectedCompany={setSelectedCompany}
-          setSelectedJob={setSelectedJob}
-        />
+        <div className="flex flex-col gap-5">
+          <SearchBar
+            setUserInput={setUserInput}
+            setSelectedCompany={setSelectedCompany}
+            setSelectedJob={setSelectedJob}
+            selectedCompany={selectedCompany}
+            selectedJob={selectedJob}
+            bgColor={"var(--color-blue-1)"}
+            color={"var(--color-blue-950)"}
+          />
+          <RecordSection
+            userInput={userInput}
+            selectedCompany={selectedCompany}
+            selectedJob={selectedJob}
+            setSelectedCompany={setSelectedCompany}
+            setSelectedJob={setSelectedJob}
+          />
+        </div>
       </div>
     </div>
   );

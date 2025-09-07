@@ -35,7 +35,7 @@ const SearchBar = ({
   };
 
   return (
-    <div className="flex flex-col sm:flex-row gap-3 w-full p-3 rounded-md shadow-lg ring-1 ring-blue-950">
+    <div className="flex flex-col sm:flex-row gap-3 w-full p-3 rounded-md shadow-sm ring-1 ring-blue-950">
       <div
         className="flex flex-row items-center justify-start gap-3 w-full sm:w-[60%] rounded-md px-3 py-1"
         style={{ color: color, borderColor: color, backgroundColor: bgColor }}
@@ -48,7 +48,7 @@ const SearchBar = ({
           onChange={handleInputChange}
         />
       </div>
-      <div className="flex flex-row items-center justify-between gap-1 w-full sm:w-[40%]">
+      <div className="flex flex-row items-center justify-between gap-3 w-full sm:w-[40%]">
         <div className="w-[50%]">
           <Dropdown
             dataList={data?.data.company ?? []}

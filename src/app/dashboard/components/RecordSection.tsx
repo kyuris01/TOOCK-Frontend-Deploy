@@ -35,7 +35,7 @@ const RecordSection = ({
           <MoonLoader color={"white"} />
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full rounded-md shadow-xl ring-1 ring-blue-950 p-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full rounded-md p-3 ring-1 ring-blue-950 drop-shadow-sm">
           {data?.data
             .filter((v) => {
               if (userInput) {

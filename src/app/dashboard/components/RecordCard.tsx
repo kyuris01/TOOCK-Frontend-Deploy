@@ -10,7 +10,7 @@ interface Props {
 
 const RecordCard = ({ company, job, date, totalScore, totalQuestionNum }: Props) => {
   return (
-    <div className="flex flex-col justify-start items-center gap-1 p-3 rounded-md border bg-blue-1">
+    <div className="flex flex-col justify-start items-center gap-1 p-3 rounded-md bg-blue-1">
       <div className="flex flex-row justify-start items-center gap-3 w-full">
         <div className="font-semibold text-xl text-blue-950">{company}</div>
         <div className="rounded-xl bg-slate-500 text-white text-sm px-3">{job}</div>
