@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import DownArrow from "@/assets/down-arrow.svg";
 import DropdownList from "./DropdownList";
 
@@ -14,9 +14,32 @@ interface Props {
 
 const Dropdown = ({ dataList, value, onChange, color, bgColor }: Props) => {
   const [clicked, setClicked] = useState<boolean>(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setClicked(false);
+      }
+    };
+
+    if (clicked) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [clicked]);
 
   return (
-    <div className="relative flex flex-col w-full" style={{ backgroundColor: bgColor }}>
+    <div
+      ref={dropdownRef}
+      className="relative flex flex-col w-full"
+      style={{ backgroundColor: bgColor }}
+    >
       <div
         onClick={() => {
           setClicked((prev) => !prev);
