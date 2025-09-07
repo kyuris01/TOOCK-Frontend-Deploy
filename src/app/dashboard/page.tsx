@@ -12,9 +12,9 @@ const Page = () => {
   const [selectedJob, setSelectedJob] = useState<string>("");
 
   return (
-    <div className="flex flex-col justify-start items-center bg-white w-[100vw] h-[100vh]">
+    <div className="flex flex-col justify-start items-center bg-blue-950 w-full min-h-dvh">
       <TopNav />
-      <div className="flex flex-col justify-start gap-5 bg-white w-[100%] sm:w-[70%] mt-5 p-3 sm:p-0">
+      <div className="flex flex-col justify-start gap-5 w-[100%] sm:w-[70%] mt-5 p-3 sm:p-0 flex-1">
         <StatSection />
         <SearchBar
           setUserInput={setUserInput}
@@ -22,6 +22,7 @@ const Page = () => {
           setSelectedJob={setSelectedJob}
           selectedCompany={selectedCompany}
           selectedJob={selectedJob}
+          color={"white"}
         />
         <RecordSection
           userInput={userInput}

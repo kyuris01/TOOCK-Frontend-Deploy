@@ -27,12 +27,12 @@ const RecordSection = ({
   });
   return (
     <>
-      {/* <div className="flex items-center justify-center w-full flex-1">
+      {/* <div className="flex items-center justify-center w-full h-full">
         <MoonLoader />
       </div> */}
       {isPending ? (
-        <div className="flex items-center justify-center w-full ">
-          <MoonLoader />
+        <div className="flex items-center justify-center w-full h-full">
+          <MoonLoader color={"white"} />
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
