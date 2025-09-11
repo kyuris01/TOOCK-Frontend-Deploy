@@ -1,6 +1,10 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import React from "react";
 
 interface Props {
+  id: number;
   company: string;
   job: string;
   date: string;
@@ -8,9 +12,16 @@ interface Props {
   totalQuestionNum: number;
 }
 
-const RecordCard = ({ company, job, date, totalScore, totalQuestionNum }: Props) => {
+const RecordCard = ({ id, company, job, date, totalScore, totalQuestionNum }: Props) => {
+  const router = useRouter();
+  const cardClickHandler = () => {
+    router.push(`/interview-result?mode=record&id=${id}`);
+  };
   return (
-    <div className="flex flex-col justify-start items-center gap-1 p-3 rounded-md bg-white drop-shadow">
+    <div
+      className="flex flex-col justify-start items-center gap-1 p-3 rounded-md bg-white drop-shadow"
+      onClick={cardClickHandler}
+    >
       <div className="flex flex-row justify-start items-center gap-3 w-full">
         <div className="font-semibold text-xl text-blue-950">{company}</div>
         <div className="rounded-xl bg-slate-500 text-white text-sm px-3">{job}</div>

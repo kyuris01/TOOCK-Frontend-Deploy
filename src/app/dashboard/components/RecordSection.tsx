@@ -57,6 +57,7 @@ const RecordSection = ({ userInput, selectedCompany, selectedJob, setSelectedCom
               return (
                 <RecordCard
                   key={v.id}
+                  id={v.id}
                   company={v.company}
                   job={v.job}
                   date={v.date}
