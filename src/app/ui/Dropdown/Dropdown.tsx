@@ -38,7 +38,7 @@ const Dropdown = ({ dataList, value, onChange, color, bgColor, border }: Props) 
   return (
     <div
       ref={dropdownRef}
-      className="relative flex flex-col w-full rounded-md px-1"
+      className="relative flex flex-col w-full rounded-md px-1 cursor-pointer"
       style={{ backgroundColor: bgColor, border: border }}
     >
       <div
@@ -54,12 +54,7 @@ const Dropdown = ({ dataList, value, onChange, color, bgColor, border }: Props) 
       </div>
 
       {clicked && (
-        <DropdownList
-          selectedItem={value}
-          setSelectedItem={onChange}
-          setClicked={setClicked}
-          dataList={dataList}
-        />
+        <DropdownList selectedItem={value} setSelectedItem={onChange} setClicked={setClicked} dataList={dataList} />
       )}
     </div>
   );
