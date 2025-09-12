@@ -35,7 +35,7 @@ const TopNav = () => {
           />
           <Button
             label={"로그아웃"}
-            icon={<Logout width="0.7rem" height="0.7rem" className="text-black group-hover:text-white" />}
+            icon={<Logout width="0.7rem" height="0.7rem" className="text-blue-950" />}
             clickHandler={clickLogoutHandler}
             color="black"
             bgColor="white"

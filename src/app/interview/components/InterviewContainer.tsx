@@ -53,14 +53,14 @@ const InterviewContainer = ({ question, qNum, totalQNum, setQuestionNum }: Props
         <div className="flex flex-col gap-3 w-full h-[30rem]">
           <QuestionBox question={question} qNum={qNum} />
           <AnswerBox key={`q-${qNum}`} isRecording={isRecording} start={start} stop={stop} audioURL={audioURL} />
-          <div className="flex flex-row items-center justify-between">
+          <div className="flex flex-row items-center justify-end">
             <div className="flex flex-row gap-3">
-              <Button
+              {/* <Button
                 label={"건너뛰기"}
                 clickHandler={() => setQuestionNum((prev) => prev + 1)}
                 border="solid var(--color-blue-950) 1px"
                 color="var(--color-blue-950)"
-              />
+              /> */}
               <Button label={"다음 질문"} clickHandler={nextBtnHandler} bgColor="var(--color-blue-950)" color="white" />
             </div>
           </div>

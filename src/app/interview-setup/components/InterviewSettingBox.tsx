@@ -18,13 +18,8 @@ interface InterviewSetting {
   dataSetter?: (value: string) => void;
 }
 
-const InterviewSettingBox = ({
-  setIsModal,
-}: {
-  setIsModal: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
-  const [interviewSettings, setInterviewSettings] =
-    useState<InterviewSetting[]>(INTERVIEW_SETTING_CONFIG);
+const InterviewSettingBox = ({ setIsModal }: { setIsModal: React.Dispatch<React.SetStateAction<boolean>> }) => {
+  const [interviewSettings, setInterviewSettings] = useState<InterviewSetting[]>(INTERVIEW_SETTING_CONFIG);
   const [companyList, setCompanyList] = useState<string[]>([]);
   const [jobList, setJobList] = useState<string[]>([]);
 
@@ -92,8 +87,8 @@ const InterviewSettingBox = ({
       <div className="flex flex-col gap-3">
         {interviewSettings.map((v, idx) => {
           return (
-            <div key={v.id} className="flex flex-col gap-1 p-3 rounded-md ring-1 ring-blue-950">
-              <div>{v.label}</div>
+            <div key={v.id} className="flex flex-col gap-1 p-3 rounded-md">
+              <div className="font-semibold">{v.label}</div>
               {interviewSettings && (
                 <Dropdown
                   dataList={v.dataList ?? []}
