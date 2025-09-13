@@ -23,7 +23,7 @@ export type InterviewImprovementProposal = {
   weekness: InterviewImprovementProposalData[];
 };
 
-interface InterviewResult {
+export interface InterviewResult {
   totalScore: number;
   detailScore: InterviewDetailScore;
   AIfeedback: string;
@@ -31,7 +31,7 @@ interface InterviewResult {
   improvementProposal: InterviewImprovementProposal;
 }
 
-interface InterviewResultApiResponse extends ApiResponse {
+export interface InterviewResultApiResponse extends ApiResponse {
   data: InterviewResult;
 }
 

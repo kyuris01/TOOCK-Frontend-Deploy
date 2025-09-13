@@ -8,8 +8,6 @@ interface Props {
   height?: string;
   bgColor?: string;
   color?: string;
-  hoverBgColor?: string;
-  hoverColor?: string;
   border?: string;
   gradient?: string;
   icon?: React.ReactNode;
@@ -22,16 +20,12 @@ const Button = ({
   height,
   bgColor,
   color,
-  hoverBgColor,
-  hoverColor,
   border,
   icon,
   gradient,
   clickHandler,
 }: Props) => {
   const [isHovered, setIsHovered] = useState(false);
-  const currentBgColor = isHovered ? hoverBgColor : bgColor;
-  const currentColor = isHovered ? hoverColor : color;
 
   return (
     <div
@@ -39,8 +33,8 @@ const Button = ({
       style={{
         width: `${width}`,
         height: `${height}`,
-        backgroundColor: currentBgColor,
-        color: currentColor,
+        backgroundColor: bgColor,
+        color: color,
         backgroundImage: gradient,
         border: `${border}`,
       }}

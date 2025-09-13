@@ -1,9 +1,8 @@
 import Button from "@/app/ui/Button";
-import React, { useState } from "react";
+import React from "react";
 import MicOn from "@/assets/micOn.svg";
 import MicOff from "@/assets/micOff.svg";
-import { useAudioRecorder } from "@/utils/useAudioRecorder";
-import { useSpeechToText } from "@/utils/useBrowserSTT";
+import PuffLoader from "react-spinners/PuffLoader";
 
 interface Props {
   isRecording: boolean;
@@ -13,15 +12,13 @@ interface Props {
 }
 
 const AnswerBox = ({ isRecording, start, stop, audioURL }: Props) => {
-  const { supported, text, setText, start: sttStart, stop: sttStop } = useSpeechToText("ko-KR");
+  // const { supported, text, setText, start: sttStart, stop: sttStop } = useSpeechToText("ko-KR");
 
   const recordBtnClickHandler = () => {
     if (isRecording) {
       stop();
-      // sttStop();
     } else {
       start();
-      // sttStart();
     }
   };
   return (
@@ -42,15 +39,12 @@ const AnswerBox = ({ isRecording, start, stop, audioURL }: Props) => {
             )
           }
           bgColor={isRecording ? "#d43628" : "#3b82f6"}
-          hoverBgColor={isRecording ? "#d43628" : "#3b82f6"}
           width="7rem"
         />
       </div>
-      <textarea
-        placeholder="여기에 답변이 표시됩니다..."
-        defaultValue={text}
-        className="flex-1 rounded-sm bg-slate-300 p-2"
-      ></textarea>
+      <div className="flex items-center justify-center flex-1 w-full rounded-sm bg-slate-300 p-2">
+        <PuffLoader color="var(--color-blue-950)" loading={isRecording} />
+      </div>
       <audio controls src={audioURL as string} className="w-full" />
     </div>
   );

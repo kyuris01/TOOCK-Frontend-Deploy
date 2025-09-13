@@ -11,13 +11,25 @@ import DetailScoreContents from "./DetailScoreContents";
 import AbilityDistributionContents from "./AbilityDistributionContents";
 import QAndAContents from "./QAndAContents";
 import ImprovementsProposalContents from "./ImprovementsProposalContents";
+import { useSearchParams } from "next/navigation";
+import { fetchInterviewRecordDetail } from "@/app/api/dashboard/fetchInterviewRecordDetail";
 
 const InterviewResultContainer = () => {
   const company = useInterviewStore((s) => s.selectedCompany);
   const job = useInterviewStore((s) => s.selectedJob);
-  const { isPending, isError, data, error } = useQuery({
-    queryKey: ["interview-results", company, job],
-    queryFn: () => fetchInterviewResults(company, job),
+  const search = useSearchParams();
+  const mode = search.get("mode") as "result" | "record";
+  let recordId = null;
+  if (mode === "record") {
+    recordId = Number(search.get("id"));
+  }
+
+  // 경우에 따라 면접 결과를 불러오거나, 아니면 저장된 기존 면접 데이터를 가져옵니다
+  const { data, isPending, isError, error } = useQuery({
+    queryKey: ["interview-results", mode, company, job],
+    queryFn: () =>
+      mode === "record" ? fetchInterviewRecordDetail(recordId as number) : fetchInterviewResults(company, job),
+    enabled: !!company && !!job && !!mode, // 값 준비되면 호출
   });
 
   const getContentOfColumn1 = (item: (typeof COLUMN1)[number]) => {
@@ -46,26 +58,12 @@ const InterviewResultContainer = () => {
     <div className="flex flex-col sm:flex-row justify-start w-full h-full sm:w-[70%] bg-white my-3 gap-5">
       <div className="flex flex-col justify-start gap-5 w-full h-full px-3 sm:w-[40%]">
         {COLUMN1.map((v) => {
-          return (
-            <ResultCard
-              key={v.id}
-              title={v.title}
-              subtitle={v.subtitle}
-              content={getContentOfColumn1(v)}
-            />
-          );
+          return <ResultCard key={v.id} title={v.title} subtitle={v.subtitle} content={getContentOfColumn1(v)} />;
         })}
       </div>
       <div className="flex flex-col justify-start gap-5 w-full h-full px-3 sm:w-[60%]">
         {COLUMN2.map((v) => {
-          return (
-            <ResultCard
-              key={v.id}
-              title={v.title}
-              subtitle={v.subtitle}
-              content={getContentOfColumn2(v)}
-            />
-          );
+          return <ResultCard key={v.id} title={v.title} subtitle={v.subtitle} content={getContentOfColumn2(v)} />;
         })}
       </div>
     </div>

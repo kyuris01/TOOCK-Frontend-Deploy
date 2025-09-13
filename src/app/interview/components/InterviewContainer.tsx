@@ -24,7 +24,7 @@ const InterviewContainer = ({ question, qNum, totalQNum, setQuestionNum }: Props
   //   reset();
   // };
   const router = useRouter();
-  const { isRecording, start, stop, togglePause, audioURL, audioBlob } = useAudioRecorder();
+  const { isRecording, start, stop, reset, audioURL, audioBlob } = useAudioRecorder();
   const addResponse = useInterviewDataStore((s) => s.addResponse);
   const mutation = useMutation({
     mutationFn: (data: Blob) => sendInterviewData(data),
@@ -35,11 +35,12 @@ const InterviewContainer = ({ question, qNum, totalQNum, setQuestionNum }: Props
       addResponse({ blob: audioBlob as Blob, url: audioURL as string });
       // await sendInterviewData(audioBlob as Blob);
       mutation.mutate(audioBlob as Blob, {
-        onSuccess: () => router.push("/interview-result"),
+        onSuccess: () => router.push("/interview-result?mode=result"),
       });
     } else {
       setQuestionNum((prev) => prev + 1);
       if (audioBlob && audioURL) addResponse({ blob: audioBlob, url: audioURL });
+      reset();
     }
   };
   return (
@@ -51,15 +52,16 @@ const InterviewContainer = ({ question, qNum, totalQNum, setQuestionNum }: Props
       ) : (
         <div className="flex flex-col gap-3 w-full h-[30rem]">
           <QuestionBox question={question} qNum={qNum} />
-          <AnswerBox isRecording={isRecording} start={start} stop={stop} audioURL={audioURL} />
-          <div className="flex flex-row items-center justify-between">
+          <AnswerBox key={`q-${qNum}`} isRecording={isRecording} start={start} stop={stop} audioURL={audioURL} />
+          <div className="flex flex-row items-center justify-end">
             <div className="flex flex-row gap-3">
-              <Button
+              {/* <Button
                 label={"건너뛰기"}
                 clickHandler={() => setQuestionNum((prev) => prev + 1)}
-                border="solid black 1px"
-              />
-              <Button label={"다음 질문"} clickHandler={nextBtnHandler} border="solid black 1px" />
+                border="solid var(--color-blue-950) 1px"
+                color="var(--color-blue-950)"
+              /> */}
+              <Button label={"다음 질문"} clickHandler={nextBtnHandler} bgColor="var(--color-blue-950)" color="white" />
             </div>
           </div>
         </div>

@@ -100,8 +100,121 @@ export const handlers = [
           logic: 6,
           problemSolving: 0,
         },
-        AIfeedback:
-          "제법 잘했지만 별로다 닝겐 앞으로는 좀 더 열심히 하도록 하하하핳하하하하하하하핳하하하하핳",
+        AIfeedback: "제법 잘했지만 별로다 닝겐 앞으로는 좀 더 열심히 하도록 하하하핳하하하하하하하핳하하하하핳",
+        questionAndAnswer: [
+          {
+            id: 0,
+            question: "아아아아아",
+            answer: "아아아아안ㄴㄴㄴㄴ",
+          },
+          {
+            id: 1,
+            question: "아아아아아",
+            answer: "아아아아안ㄴㄴㄴㄴ",
+          },
+          {
+            id: 2,
+            question: "아아아아아",
+            answer: "아아아아안ㄴㄴㄴㄴ",
+          },
+          {
+            id: 3,
+            question: "아아아아아",
+            answer: "아아아아안ㄴㄴㄴㄴ",
+          },
+        ],
+        improvementProposal: {
+          strength: [
+            {
+              id: 0,
+              text: "명확하고 논리적인 답변 구성",
+            },
+            {
+              id: 1,
+              text: "구체적인 프로젝트 경험 제시",
+            },
+            {
+              id: 2,
+              text: "적절한 기술적 용어 사용",
+            },
+          ],
+          weekness: [
+            {
+              id: 0,
+              text: "답변 시간 조절 (너무 길거나 짧지 않게)",
+            },
+            {
+              id: 1,
+              text: "더 구체적인 수치나 결과 제시",
+            },
+            {
+              id: 2,
+              text: "팀워크 경험에 대한 구체적 사례 준비",
+            },
+          ],
+        },
+      },
+    });
+  }),
+  http.get("*/interview-records", ({ request }) => {
+    return HttpResponse.json({
+      isSuccess: true,
+      code: 200,
+      message: "인터뷰 기록 조회 성공",
+      data: [
+        {
+          id: 0,
+          company: "메타",
+          job: "프론트엔드 개발자",
+          date: "2025-06-28",
+          totalScore: 8,
+          totalQuestionNum: 5,
+        },
+        {
+          id: 1,
+          company: "메타",
+          job: "프론트엔드 개발자",
+          date: "2025-06-28",
+          totalScore: 4,
+          totalQuestionNum: 3,
+        },
+        {
+          id: 2,
+          company: "애플",
+          job: "백엔드 개발자",
+          date: "2025-06-28",
+          totalScore: 7,
+          totalQuestionNum: 2,
+        },
+        {
+          id: 3,
+          company: "삼성",
+          job: "데이터 엔지니어",
+          date: "2025-06-28",
+          totalScore: 10,
+          totalQuestionNum: 5,
+        },
+      ],
+    });
+  }),
+  http.get("*/interview-record-detail", ({ request }) => {
+    const url = new URL(request.url);
+    const id = url.searchParams.get("id");
+
+    console.log(id);
+    return HttpResponse.json({
+      isSuccess: true,
+      code: 200,
+      message: "면접 레코드 상세정보 조회 성공",
+      data: {
+        totalScore: 9,
+        detailScore: {
+          technic: 8,
+          communication: 10,
+          logic: 6,
+          problemSolving: 0,
+        },
+        AIfeedback: "제법 잘했지만 별로다 닝겐 앞으로는 좀 더 열심히 하도록 하하하핳하하하하하하하핳하하하하핳",
         questionAndAnswer: [
           {
             id: 0,

@@ -21,7 +21,7 @@ const TotalScoreContents = ({ data }: Props) => {
   return (
     <div className="flex flex-col gap-2 w-full">
       <div className="text-2xl font-semibold">{data}/10</div>
-      <div className="flex items-center justify-center w-[3rem] rounded-3xl bg-black text-white text-base font-medium">
+      <div className="flex items-center justify-center w-[3rem] rounded-3xl bg-blue-950 text-white text-base font-medium">
         {getGrade(data)}
       </div>
     </div>

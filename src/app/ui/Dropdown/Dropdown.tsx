@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import DownArrow from "@/assets/down-arrow.svg";
 import DropdownList from "./DropdownList";
 
@@ -8,30 +8,53 @@ interface Props {
   dataList: string[];
   value: string;
   onChange: (value: string) => void;
+  color?: string;
+  bgColor?: string;
+  border?: string;
 }
 
-const Dropdown = ({ dataList, value, onChange }: Props) => {
+const Dropdown = ({ dataList, value, onChange, color, bgColor, border }: Props) => {
   const [clicked, setClicked] = useState<boolean>(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setClicked(false);
+      }
+    };
+
+    if (clicked) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [clicked]);
 
   return (
-    <div className="relative flex flex-col w-full">
+    <div
+      ref={dropdownRef}
+      className="relative flex flex-col w-full rounded-md px-1 cursor-pointer"
+      style={{ backgroundColor: bgColor, border: border }}
+    >
       <div
         onClick={() => {
           setClicked((prev) => !prev);
         }}
-        className="flex flex-row items-center justify-between w-full h-[2rem] border border-b-2 rounded-md p-2"
+        className="flex flex-row items-center justify-between w-full h-[2.5rem] p-2"
       >
-        <div>{value}</div>
+        <div className="w-full truncate" style={{ color: color }}>
+          {value}
+        </div>
         <DownArrow width="0.7rem" height="0.7rem" />
       </div>
 
       {clicked && (
-        <DropdownList
-          selectedItem={value}
-          setSelectedItem={onChange}
-          setClicked={setClicked}
-          dataList={dataList}
-        />
+        <DropdownList selectedItem={value} setSelectedItem={onChange} setClicked={setClicked} dataList={dataList} />
       )}
     </div>
   );
